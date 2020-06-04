@@ -7,21 +7,21 @@ namespace Demo.Models
     public class Person
     {
         public string FullName { get; private set; }
-        public int Age { get; private set; }
+        public int? Age { get; private set; }
         public string Email { get; private set; }
-        public DateTime BirthDate { get; private set; }
-        public bool HasDiscount { get; private set; }
-        public decimal Discount { get; private set; }
+        public DateTime? BirthDate { get; private set; }
+        public bool? HasDiscount { get; private set; }
+        public decimal? Discount { get; private set; }
 
         public Person() { }
 
         public Person(
-            string fullName,
-            int age,
-            string email,
-            DateTime birthDate,
-            bool hasDiscount,
-            decimal discount
+            string fullName = null,
+            int? age = null,
+            string email = null,
+            DateTime? birthDate = null,
+            bool? hasDiscount = null,
+            decimal? discount = null
         ) : this()
         {
             this.FullName = fullName;
