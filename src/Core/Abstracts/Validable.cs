@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Code.Abstracts
 {
-    public abstract class Validable<T> : IValidable { 
+    public abstract class Validable<T> : IValidable where T : class { 
         private readonly GenericValidator<T> _validator = new GenericValidator<T>();
-        public abstract Task<ValidationResult> ValidateAsync();
-        protected Task<ValidationResult> ValidateAsync(T obj) => _validator.ValidateAsync(obj);
+        public ValidationResult Validate() => _validator.Validate(this as T);
+        public Task<ValidationResult> ValidateAsync() => _validator.ValidateAsync(this as T);
         protected IRuleBuilderInitial<T, TProperty> RuleFor<TProperty>(Expression<Func<T, TProperty>> expression) => _validator.RuleFor(expression);
     }
 }

@@ -2,5 +2,5 @@
 
 namespace Code.Generics
 {
-    internal class GenericValidator<TEntity> : AbstractValidator<TEntity> { }
+    internal class GenericValidator<T> : AbstractValidator<T> where T : class { }
 }

@@ -1,7 +1,5 @@
 ﻿using Code.Abstracts;
 using FluentValidation;
-using FluentValidation.Results;
-using System.Threading.Tasks;
 
 namespace Demo.Models
 {
@@ -26,7 +24,5 @@ namespace Demo.Models
             this.Name = name;
             this.Price = price;
         }
-
-        public override Task<ValidationResult> ValidateAsync() => ValidateAsync(this);
     }
 }

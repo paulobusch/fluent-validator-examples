@@ -1,8 +1,6 @@
 ﻿using Code.Abstracts;
 using FluentValidation;
-using FluentValidation.Results;
 using System;
-using System.Threading.Tasks;
 
 namespace Demo.Models
 {
@@ -54,7 +52,5 @@ namespace Demo.Models
         {
             return date <= DateTime.Today.AddYears(-18);
         }
-
-        public override Task<ValidationResult> ValidateAsync() => ValidateAsync(this);
     }
 }
