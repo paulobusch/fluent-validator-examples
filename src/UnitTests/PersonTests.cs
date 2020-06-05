@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Demo.Models;
+using System;
 using System.Collections.Generic;
-using Demo.Models;
-using Demo.Validators;
-using FluentValidation;
 using UnitTests.Utils;
 using Xunit;
 
@@ -10,13 +8,6 @@ namespace UnitTests
 {
     public class PersonTests
     {
-        private readonly IValidator<Person> _validator;
-
-        public PersonTests()
-        {
-            _validator = new PersonValidator();
-        }
-
         public static IEnumerable<object[]> ValidatorData()
         {
             yield return new object[] { false, nameof(Person.FullName), new Person() };
@@ -43,12 +34,12 @@ namespace UnitTests
 
         [Theory]
         [MemberData(nameof(ValidatorData))]
-        public void Validator(
+        public async void Validator(
             bool isValidField,
             string field,
             Person person
         ) {
-            var validateResult = _validator.Validate(person);
+            var validateResult = await person.ValidateAsync();
             if (isValidField) Assert.DoesNotContain(validateResult.Errors, err => err.ErrorMessage.Contains(field));
             else Assert.Contains(validateResult.Errors, err => err.ErrorMessage.Contains(field));
         }
